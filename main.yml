@@ -1,0 +1,5 @@
+---
+- name: Order a new AWS Sandbox environment through RHPDS
+  hosts: localhost
+  roles:
+    - rhpds-create-aws-sandbox
