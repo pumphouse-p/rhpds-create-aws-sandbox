@@ -24,7 +24,7 @@
       msg: "AWS Sandbox Env exists: {{ aws_sandbox_exists }}"
 
   - name: If the Sandbox already exists, abort
-    debug:
+    fail:
       msg: AWS Sandbox environment already exists
     when: aws_sandbox_exists
 
