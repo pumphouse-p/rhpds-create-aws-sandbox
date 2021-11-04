@@ -41,7 +41,7 @@
           status_code: 200
           body_format: json
         register: request_object
-        when: not ansible_facts['aws_sandbox_exists']
+        when: not aws_sandbox_exists
 
       - name: check request until it is complete
         ansible.builtin.uri:
