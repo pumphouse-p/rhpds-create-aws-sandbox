@@ -73,4 +73,4 @@
 
   - name: generate secret yaml with cloud credentials
     include_tasks: generate_secret.yml
-    when: aws_sandbox_exists | bool
+    when: aws_sandbox_exists == True
