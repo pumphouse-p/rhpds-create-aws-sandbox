@@ -72,4 +72,8 @@
         include_tasks: check_existing_services.yml
         loop: "{{ running_services.json.resources }}"
         when: not allow_duplicate_sandboxes
+
+      - name: generate secret yaml with cloud credentials
+        include_tasks: generate_secret.yml
+        loop: "{{ running_services.json.resources }}"
     when: not ansible_facts['aws_sandbox_exists'] or allow_duplicate_sandboxes
