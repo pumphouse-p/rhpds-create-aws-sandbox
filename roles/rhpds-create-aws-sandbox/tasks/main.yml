@@ -67,8 +67,10 @@
     register: running_services
 
   - name: set credential stats for new sandbox
-    include_tasks: 
-      - check_existing_services.yml
-      - generate_secret.yml
+    include_tasks: check_existing_services.yml
     loop: "{{ running_services.json.resources }}"
     when: not allow_duplicate_sandboxes
+
+  - name: generate secret yaml with cloud credentials
+    include_tasks: generate_secret.yml
+    when: aws_sandbox_exists
