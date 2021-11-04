@@ -21,12 +21,12 @@
 
   - name: Does the AWS Sandbox Env exists already?
     debug:
-      msg: "AWS Sandbox Env exists: {{ aws_sandbox_exists }}"
+      msg: "AWS Sandbox Env exists: {{ ansible_facts['aws_sandbox_exists'] }}"
 
   - name: If the Sandbox already exists, abort
     fail:
       msg: AWS Sandbox environment already exists
-    when: aws_sandbox_exists | bool
+    when: ansible_facts['aws_sandbox_exists']
 
   - name: Request a new sandbox
     ansible.builtin.uri:
@@ -39,7 +39,7 @@
       status_code: 200
       body_format: json
     register: request_object
-    when: not (aws_sandbox_exists | bool)
+    when: not ansible_facts['aws_sandbox_exists']
 
   - name: check request until it is complete
     ansible.builtin.uri:
@@ -73,4 +73,4 @@
 
   - name: generate secret yaml with cloud credentials
     include_tasks: generate_secret.yml
-    when: aws_sandbox_exists == True
+    when: ansible_facts['aws_sandbox_exists']
