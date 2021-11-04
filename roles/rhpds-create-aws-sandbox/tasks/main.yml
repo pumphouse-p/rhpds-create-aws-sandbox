@@ -26,7 +26,7 @@
   - name: If the Sandbox already exists, abort
     fail:
       msg: AWS Sandbox environment already exists
-    when: aws_sandbox_exists
+    when: aws_sandbox_exists | bool
 
   - name: Request a new sandbox
     ansible.builtin.uri:
@@ -39,7 +39,7 @@
       status_code: 200
       body_format: json
     register: request_object
-    when: not aws_sandbox_exists
+    when: not (aws_sandbox_exists | bool)
 
   - name: check request until it is complete
     ansible.builtin.uri:
@@ -73,4 +73,4 @@
 
   - name: generate secret yaml with cloud credentials
     include_tasks: generate_secret.yml
-    when: aws_sandbox_exists
+    when: aws_sandbox_exists | bool
