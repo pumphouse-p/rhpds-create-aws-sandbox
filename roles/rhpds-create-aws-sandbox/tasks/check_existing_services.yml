@@ -104,7 +104,3 @@
     # The following breaks if the password has a '/'
     - "AWS WEB CONSOLE USERNAME: {{ aws_web_console_cred.split('/')[0] | trim }}"
     - "AWS WEB CONSOLE PASSWORD: {{ aws_web_console_cred.split('/')[1] | trim }}"
-
-- name: generate secret yaml with cloud credentials
-  include_tasks: generate_secret.yml
-  when: ansible_facts['aws_sandbox_exists']
