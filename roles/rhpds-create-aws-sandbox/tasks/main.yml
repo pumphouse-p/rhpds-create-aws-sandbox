@@ -76,4 +76,8 @@
       - name: generate secret yaml with cloud credentials
         include_tasks: generate_secret.yml
         loop: "{{ running_services.json.resources }}"
+
+      - name: display facts
+        debug:
+          var: ansible_facts
     when: not aws_sandbox_exists or allow_duplicate_sandboxes
