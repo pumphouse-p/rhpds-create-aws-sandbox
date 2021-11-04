@@ -67,6 +67,8 @@
     register: running_services
 
   - name: set credential stats for new sandbox
-    include_tasks: check_existing_services.yml
+    include_tasks: 
+      - check_existing_services.yml
+      - generate_secret.yml
     loop: "{{ running_services.json.resources }}"
     when: not allow_duplicate_sandboxes

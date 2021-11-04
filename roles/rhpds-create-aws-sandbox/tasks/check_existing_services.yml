@@ -36,7 +36,7 @@
     aws_access_key_temp: "{{ full_attributes.json.custom_attributes | json_query(_query) }}"
   vars:
     _query: "[?name ==`AWS_ACCESS_KEY_ID`].value"
-  # no_log: true
+  no_log: true
 
 - name: Search AWS SECRET KEY
   ansible.builtin.set_fact:
