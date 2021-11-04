@@ -21,7 +21,7 @@
 
   - name: Does the AWS Sandbox Env exists already?
     debug:
-      msg: "AWS Sandbox Env exists: {{ ansible_facts['aws_sandbox_exists'] }}"
+      msg: "AWS Sandbox Env exists: {{ aws_sandbox_exists }}"
 
   - name: If the Sandbox already exists, abort
     debug:
